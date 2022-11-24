@@ -225,9 +225,7 @@ class PlayState extends MusicBeatState
 	var bgGhouls:BGSprite;
 
 	var a:BGSprite;
-	var i:BGSprite;
-	var n:BGSprite;
-	var s:BGSprite;
+	var xd:BGSprite;
 
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
@@ -433,8 +431,11 @@ class PlayState extends MusicBeatState
 				}
             case 'Mountain':
 				var a:BGSprite = new BGSprite('mountain/frostbite', -180, -70);
-				a.scale.set(1.23, 1.23);
+				a.scale.set(1.50, 1.50);
 				add(a);
+
+				var xd:BGSprite = new BGSprite('mountain/thermometer', 20, 160);
+				add(xd);
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
