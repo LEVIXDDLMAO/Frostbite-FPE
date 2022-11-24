@@ -225,7 +225,15 @@ class PlayState extends MusicBeatState
 	var bgGhouls:BGSprite;
 
 	var a:BGSprite;
-	var xd:BGSprite;
+	
+	var useFrostbiteMechanic:Bool = false;
+	var frostbiteTheromometerTyphlosion:FlxSprite;
+	var frostbiteTheromometer:FlxSprite;
+	var frostbiteBar:FlxBar;
+	var coldness:Float = 0.0;
+	var coldnessDisplay:Float = 0.0;
+	var coldnessRate:Float = 0.0;
+	var typhlosionUses:Int = 10;
 
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
@@ -433,6 +441,35 @@ class PlayState extends MusicBeatState
 				var a:BGSprite = new BGSprite('mountain/frostbite', -180, -70);
 				a.scale.set(1.50, 1.50);
 				add(a);
+
+				frostbiteBar = new FlxBar(1161 + 36 - 1134, 172 + 14, BOTTOM_TO_TOP, 16, 325, this, 'coldnessDisplay', 0, 1);
+				frostbiteBar.createFilledBar(0xFF133551, 0xFFAAD6FF);
+				add(frostbiteBar);
+				frostbiteBar.cameras = [camHUD];
+
+				frostbiteTheromometerTyphlosion = new FlxSprite(1164 - 1134, 119);
+				frostbiteTheromometerTyphlosion.frames = Paths.getSparrowAtlas('UI/base/TyphlosionVit');
+				frostbiteTheromometerTyphlosion.animation.addByPrefix('stage1', 'Typh1', 24, true);
+				frostbiteTheromometerTyphlosion.animation.addByPrefix('stage2', 'Typh2', 24, true);
+				frostbiteTheromometerTyphlosion.animation.addByPrefix('stage3', 'Typh3', 24, true);
+				frostbiteTheromometerTyphlosion.animation.addByPrefix('stage4', 'Typh4', 24, true);
+				frostbiteTheromometerTyphlosion.animation.addByPrefix('stage5', 'Typh5', 24, true);
+				frostbiteTheromometerTyphlosion.animation.play('stage1');
+				frostbiteTheromometerTyphlosion.updateHitbox();
+				frostbiteTheromometerTyphlosion.antialiasing = true;
+				add(frostbiteTheromometerTyphlosion);
+				frostbiteTheromometerTyphlosion.cameras = [camHUD];
+
+				frostbiteTheromometer = new FlxSprite(1161 - 1134, 172);
+				frostbiteTheromometer.frames = Paths.getSparrowAtlas('UI/base/Thermometer');
+				frostbiteTheromometer.animation.addByPrefix('stage1', 'Therm1', 24, true);
+				frostbiteTheromometer.animation.addByPrefix('stage2', 'Therm2', 24, true);
+				frostbiteTheromometer.animation.addByPrefix('stage3', 'Therm3', 24, true);
+				frostbiteTheromometer.animation.play('stage1');
+				frostbiteTheromometer.updateHitbox();
+				frostbiteTheromometer.antialiasing = true;
+				add(frostbiteTheromometer);
+				frostbiteTheromometer.cameras = [camHUD];
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
