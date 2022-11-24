@@ -434,9 +434,6 @@ class PlayState extends MusicBeatState
 				a.scale.set(1.50, 1.50);
 				add(a);
 
-				var xd:BGSprite = new BGSprite('mountain/thermometer', 20, 160);
-				add(xd);
-
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
 					halloweenBG = new BGSprite('halloween_bg', -200, -100, ['halloweem bg0', 'halloweem bg lightning strike']);
