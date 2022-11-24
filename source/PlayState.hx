@@ -224,6 +224,11 @@ class PlayState extends MusicBeatState
 	var wiggleShit:WiggleEffect = new WiggleEffect();
 	var bgGhouls:BGSprite;
 
+	var a:BGSprite;
+	var i:BGSprite;
+	var n:BGSprite;
+	var s:BGSprite;
+
 	public var songScore:Int = 0;
 	public var songHits:Int = 0;
 	public var songMisses:Int = 0;
@@ -426,6 +431,10 @@ class PlayState extends MusicBeatState
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
 				}
+            case 'Mountain':
+				var a:BGSprite = new BGSprite('mountain/frostbite', -180, -70);
+				a.scale.set(1.23, 1.23);
+				add(a);
 
 			case 'spooky': //Week 2
 				if(!ClientPrefs.lowQuality) {
@@ -1503,7 +1512,7 @@ class PlayState extends MusicBeatState
 			for (i in 0...opponentStrums.length) {
 				setOnLuas('defaultOpponentStrumX' + i, opponentStrums.members[i].x);
 				setOnLuas('defaultOpponentStrumY' + i, opponentStrums.members[i].y);
-				//if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
+				// if(ClientPrefs.middleScroll) opponentStrums.members[i].visible = false;
 			}
 
 			startedCountdown = true;
